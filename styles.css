@@ -1,0 +1,54 @@
+body
+{
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fa;
+    padding: 20px;
+}
+
+h1
+{
+    color: #172b46;
+}
+
+.summary-card
+{
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+form
+{
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+input
+{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+button
+{
+    background-color: #15966b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+}
+
+#food-list
+{
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    list-style: none;
+}
+
+#form-message
+{
+    color: red;
+}

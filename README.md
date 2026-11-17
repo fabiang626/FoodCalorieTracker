@@ -35,7 +35,7 @@ Following software is required:
 1. Open the application
 2. Enter food name.
 3. Enter a calorie amount greater than 0.
-4. Click **Add Food**.
+4. Click Add Food.
 5. Verify that food appears in the food log.
 6. Verify that total calorie count updates.
 7. Submit and empty food name and error message appears.

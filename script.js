@@ -11,6 +11,8 @@ const formMessage = document.getElementById("form-message");
 const goalForm = document.getElementById("goal-form");
 const calorieGoalInput = document.getElementById("calorie-goal");
 const dailyGoalDisplay = document.getElementById("daily-goal-display");
+const remainingCaloriesDisplay = document.getElementById("remaining-calories");
+const remainingMessage = document.getElementById("remaining-message");
 const goalMessage = document.getElementById("goal-message");
 
 // Load saved food entries
@@ -49,6 +51,7 @@ goalForm.addEventListener("submit", function(event)
         "Daily calorie goal saved successfully!";
 
     displayCalorieGoal();
+    renderFoods();
 });
 
 
@@ -134,6 +137,33 @@ function renderFoods()
     });
 
     totalCalories.textContent = total;
+    if (calorieGoal > 0)
+{
+    const remainingCalories =
+        calorieGoal - total;
+
+    remainingCaloriesDisplay.textContent =
+        remainingCalories;
+
+    if (remainingCalories < 0)
+    {
+        remainingMessage.textContent =
+            "⚠ Over Goal By " +
+            Math.abs(remainingCalories) +
+            " Calories";
+    }
+    else
+    {
+        remainingMessage.textContent = "";
+    }
+}
+else
+{
+    remainingCaloriesDisplay.textContent =
+        "No goal set";
+
+    remainingMessage.textContent = "";
+}
 }
 
 

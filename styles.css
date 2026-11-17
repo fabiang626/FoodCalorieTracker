@@ -87,3 +87,16 @@ button
     color: #15966b;
     font-weight: bold;
 }
+
+#remaining-calories
+{
+    color: #172b46;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#remaining-message
+{
+    color: red;
+    font-weight: bold;
+}

@@ -1,44 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Calorie Tracker</title>
+
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<h1>Food Calorie Tracker</h1>
+    <h1>Food Calorie Tracker</h1>
 
-<div class="summary-card">
-    <h2>Total Calories</h2>
-    <p id="total-calories">0</p>
-</div>
+    <div class="summary-card">
+        <h2>Total Calories</h2>
+        <p id="total-calories">0</p>
 
-<form id="food-form">
+        <!-- Daily Calorie Goal -->
+        <h2>Daily Calorie Goal</h2>
+        <p id="daily-goal-display">No goal set</p>
+    </div>
 
-    <label for="food-name">Food Name</label>
-    <input
-        type="text"
-        id="food-name"
-        placeholder="Enter food name">
+    <!-- Goal Entry Form -->
+    <form id="goal-form">
 
-    <label for="food-calories">Calories</label>
-    <input
-        type="number"
-        id="food-calories"
-        placeholder="Enter calories">
+        <h2>Set Your Daily Goal</h2>
 
-    <button type="submit">
-        Add Food
-    </button>
+        <label for="calorie-goal">Enter Calorie Goal</label>
 
-</form>
+        <input
+            type="number"
+            id="calorie-goal"
+            placeholder="Enter daily calorie goal"
+            min="1"
+            step="1"
+            required
+        >
 
-<p id="form-message"></p>
+        <button type="submit">
+            Save Goal
+        </button>
 
-<h2>Food Log</h2>
+        <p id="goal-message"></p>
 
-<ul id="food-list">
+    </form>
 
-</ul>
+    <!-- Food Entry Form -->
+    <form id="food-form">
 
-<script src="script.js"></script>
+        <h2>Add Food</h2>
+
+        <label for="food-name">Food Name</label>
+        <input
+            type="text"
+            id="food-name"
+            placeholder="Enter food name"
+        >
+
+        <label for="food-calories">Calories</label>
+        <input
+            type="number"
+            id="food-calories"
+            placeholder="Enter calories"
+        >
+
+        <button type="submit">
+            Add Food
+        </button>
+
+    </form>
+
+    <p id="form-message"></p>
+
+    <h2>Food Log</h2>
+
+    <ul id="food-list"></ul>
+
+    <script src="script.js"></script>
 
 </body>
+</html>

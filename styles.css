@@ -52,3 +52,38 @@ button
 {
     color: red;
 }
+
+/* Sprint 2 - US-04 Daily Calorie Goal */
+
+#goal-form {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+#goal-form h2 {
+    color: #172b46;
+}
+
+#goal-form input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#goal-form button {
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#daily-goal-display {
+    color: #15966b;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#goal-message {
+    color: #15966b;
+    font-weight: bold;
+}

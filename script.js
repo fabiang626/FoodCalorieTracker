@@ -1,4 +1,3 @@
-
 // Food form elements
 const foodForm = document.getElementById("food-form");
 const foodName = document.getElementById("food-name");
@@ -12,6 +11,20 @@ const goalForm = document.getElementById("goal-form");
 const calorieGoalInput = document.getElementById("calorie-goal");
 const dailyGoalDisplay = document.getElementById("daily-goal-display");
 const goalMessage = document.getElementById("goal-message");
+
+// Remaining Calories
+const remainingCaloriesDisplay =
+    document.getElementById("remaining-calories");
+
+const remainingMessage =
+    document.getElementById("remaining-message");
+
+// Progress Bar
+const progressBar =
+    document.getElementById("progress-bar");
+
+const progressPercentage =
+    document.getElementById("progress-percentage");
 
 // Load saved food entries
 let foods =
@@ -29,15 +42,14 @@ goalForm.addEventListener("submit", function(event)
 
     const goal = Number(calorieGoalInput.value);
 
-    // Validate calorie goal
     if (!Number.isFinite(goal) || goal <= 0)
     {
         goalMessage.textContent =
             "Calorie goal must be greater than 0.";
+
         return;
     }
 
-    // Save goal
     calorieGoal = goal;
 
     localStorage.setItem(
@@ -49,6 +61,8 @@ goalForm.addEventListener("submit", function(event)
         "Daily calorie goal saved successfully!";
 
     displayCalorieGoal();
+
+    renderFoods();
 });
 
 
@@ -64,7 +78,8 @@ function displayCalorieGoal()
     }
     else
     {
-        dailyGoalDisplay.textContent = "No goal set";
+        dailyGoalDisplay.textContent =
+            "No goal set";
     }
 }
 
@@ -75,19 +90,24 @@ foodForm.addEventListener("submit", function(event)
     event.preventDefault();
 
     const name = foodName.value.trim();
-    const calories = Number(foodCalories.value);
 
-    if(name === "")
+    const calories =
+        Number(foodCalories.value);
+
+    if (name === "")
     {
         formMessage.textContent =
             "Food name cannot be empty.";
+
         return;
     }
 
-    if(!Number.isFinite(calories) || calories <= 0)
+    if (!Number.isFinite(calories) ||
+        calories <= 0)
     {
         formMessage.textContent =
             "Calories must be greater than 0.";
+
         return;
     }
 
@@ -134,9 +154,61 @@ function renderFoods()
     });
 
     totalCalories.textContent = total;
+
+    if (calorieGoal > 0)
+    {
+        const remainingCalories =
+            calorieGoal - total;
+
+        remainingCaloriesDisplay.textContent =
+            remainingCalories;
+
+        if (remainingCalories < 0)
+        {
+            remainingMessage.textContent =
+                "⚠ Over Goal By " +
+                Math.abs(remainingCalories) +
+                " Calories";
+        }
+        else
+        {
+            remainingMessage.textContent = "";
+        }
+
+        let progress =
+            (total / calorieGoal) * 100;
+
+        progressPercentage.textContent =
+            progress.toFixed(0) + "%";
+
+        progressBar.style.width =
+            Math.min(progress, 100) + "%";
+
+        if (progress > 100)
+        {
+            progressBar.style.backgroundColor =
+                "red";
+        }
+        else
+        {
+            progressBar.style.backgroundColor =
+                "#15966b";
+        }
+    }
+    else
+    {
+        remainingCaloriesDisplay.textContent =
+            "No goal set";
+
+        remainingMessage.textContent = "";
+
+        progressBar.style.width = "0%";
+
+        progressPercentage.textContent = "0%";
+    }
 }
 
 
-// Load saved information when page opens
+// Load saved data
 renderFoods();
 displayCalorieGoal();

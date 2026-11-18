@@ -12,15 +12,28 @@
     <h1>Food Calorie Tracker</h1>
 
     <div class="summary-card">
+
         <h2>Total Calories</h2>
         <p id="total-calories">0</p>
 
-        <!-- Daily Calorie Goal -->
         <h2>Daily Calorie Goal</h2>
         <p id="daily-goal-display">No goal set</p>
+
+        <h2>Remaining Calories</h2>
+        <p id="remaining-calories">0</p>
+
+        <p id="remaining-message"></p>
+
+        <h2>Goal Progress</h2>
+
+        <div class="progress-container">
+            <div id="progress-bar"></div>
+        </div>
+
+        <p id="progress-percentage">0%</p>
+
     </div>
 
-    <!-- Goal Entry Form -->
     <form id="goal-form">
 
         <h2>Set Your Daily Goal</h2>
@@ -44,12 +57,12 @@
 
     </form>
 
-    <!-- Food Entry Form -->
     <form id="food-form">
 
         <h2>Add Food</h2>
 
         <label for="food-name">Food Name</label>
+
         <input
             type="text"
             id="food-name"
@@ -57,6 +70,7 @@
         >
 
         <label for="food-calories">Calories</label>
+
         <input
             type="number"
             id="food-calories"

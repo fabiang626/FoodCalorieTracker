@@ -23,6 +23,7 @@ form
     background-color: white;
     padding: 20px;
     border-radius: 10px;
+    margin-bottom: 20px;
 }
 
 input
@@ -30,6 +31,7 @@ input
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
+    box-sizing: border-box;
 }
 
 button
@@ -38,6 +40,8 @@ button
     color: white;
     border: none;
     padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 #food-list
@@ -53,37 +57,57 @@ button
     color: red;
 }
 
-/* Sprint 2 - US-04 Daily Calorie Goal */
-
-#goal-form {
-    background-color: white;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 10px;
-}
-
-#goal-form h2 {
+#goal-form h2
+{
     color: #172b46;
 }
 
-#goal-form input {
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-#goal-form button {
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-#daily-goal-display {
+#daily-goal-display
+{
     color: #15966b;
     font-size: 24px;
     font-weight: bold;
 }
 
-#goal-message {
+#goal-message
+{
     color: #15966b;
     font-weight: bold;
+}
+
+#remaining-calories
+{
+    color: #172b46;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#remaining-message
+{
+    color: red;
+    font-weight: bold;
+}
+
+.progress-container
+{
+    width: 100%;
+    background-color: #dcdcdc;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 25px;
+    margin-top: 10px;
+}
+
+#progress-bar
+{
+    height: 100%;
+    width: 0%;
+    background-color: #15966b;
+    transition: width 0.3s ease;
+}
+
+#progress-percentage
+{
+    font-weight: bold;
+    margin-top: 10px;
 }

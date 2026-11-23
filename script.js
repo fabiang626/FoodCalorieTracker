@@ -26,13 +26,45 @@ const progressBar =
 const progressPercentage =
     document.getElementById("progress-percentage");
 
-// Load saved food entries
-let foods =
-    JSON.parse(localStorage.getItem("foods")) || [];
 
-// Load saved calorie goal
-let calorieGoal =
-    Number(localStorage.getItem("calorieGoal")) || 0;
+// Dependency Inversion Principle
+// Storage functions
+
+function saveFoods()
+{
+    localStorage.setItem(
+        "foods",
+        JSON.stringify(foods)
+    );
+}
+
+function loadFoods()
+{
+    return JSON.parse(
+        localStorage.getItem("foods")
+    ) || [];
+}
+
+function saveGoal()
+{
+    localStorage.setItem(
+        "calorieGoal",
+        calorieGoal
+    );
+}
+
+function loadGoal()
+{
+    return Number(
+        localStorage.getItem("calorieGoal")
+    ) || 0;
+}
+
+
+// Load saved data
+let foods = loadFoods();
+
+let calorieGoal = loadGoal();
 
 
 // US-04: Save Daily Calorie Goal
@@ -40,7 +72,8 @@ goalForm.addEventListener("submit", function(event)
 {
     event.preventDefault();
 
-    const goal = Number(calorieGoalInput.value);
+    const goal =
+        Number(calorieGoalInput.value);
 
     if (!Number.isFinite(goal) || goal <= 0)
     {
@@ -52,10 +85,7 @@ goalForm.addEventListener("submit", function(event)
 
     calorieGoal = goal;
 
-    localStorage.setItem(
-        "calorieGoal",
-        calorieGoal
-    );
+    saveGoal();
 
     goalMessage.textContent =
         "Daily calorie goal saved successfully!";
@@ -74,7 +104,8 @@ function displayCalorieGoal()
         dailyGoalDisplay.textContent =
             calorieGoal + " calories per day";
 
-        calorieGoalInput.value = calorieGoal;
+        calorieGoalInput.value =
+            calorieGoal;
     }
     else
     {
@@ -89,7 +120,8 @@ foodForm.addEventListener("submit", function(event)
 {
     event.preventDefault();
 
-    const name = foodName.value.trim();
+    const name =
+        foodName.value.trim();
 
     const calories =
         Number(foodCalories.value);
@@ -119,10 +151,7 @@ foodForm.addEventListener("submit", function(event)
         calories: calories
     });
 
-    localStorage.setItem(
-        "foods",
-        JSON.stringify(foods)
-    );
+    saveFoods();
 
     renderFoods();
 
@@ -130,31 +159,22 @@ foodForm.addEventListener("submit", function(event)
 });
 
 
-// Display food entries and total calories
-function renderFoods()
-{
-    foodList.innerHTML = "";
+// Single Responsibility Principle
 
+function calculateTotalCalories()
+{
     let total = 0;
 
     foods.forEach(function(food)
     {
-        const item =
-            document.createElement("li");
-
-        item.textContent =
-            food.name +
-            " - " +
-            food.calories +
-            " calories";
-
-        foodList.appendChild(item);
-
         total += food.calories;
     });
 
-    totalCalories.textContent = total;
+    return total;
+}
 
+function updateRemainingCalories(total)
+{
     if (calorieGoal > 0)
     {
         const remainingCalories =
@@ -172,9 +192,24 @@ function renderFoods()
         }
         else
         {
-            remainingMessage.textContent = "";
+            remainingMessage.textContent =
+                "";
         }
+    }
+    else
+    {
+        remainingCaloriesDisplay.textContent =
+            "No goal set";
 
+        remainingMessage.textContent =
+            "";
+    }
+}
+
+function updateProgressBar(total)
+{
+    if (calorieGoal > 0)
+    {
         let progress =
             (total / calorieGoal) * 100;
 
@@ -197,18 +232,46 @@ function renderFoods()
     }
     else
     {
-        remainingCaloriesDisplay.textContent =
-            "No goal set";
+        progressBar.style.width =
+            "0%";
 
-        remainingMessage.textContent = "";
-
-        progressBar.style.width = "0%";
-
-        progressPercentage.textContent = "0%";
+        progressPercentage.textContent =
+            "0%";
     }
 }
 
 
-// Load saved data
+// Display food entries and dashboard data
+function renderFoods()
+{
+    foodList.innerHTML = "";
+
+    foods.forEach(function(food)
+    {
+        const item =
+            document.createElement("li");
+
+        item.textContent =
+            food.name +
+            " - " +
+            food.calories +
+            " calories";
+
+        foodList.appendChild(item);
+    });
+
+    const total =
+        calculateTotalCalories();
+
+    totalCalories.textContent =
+        total;
+
+    updateRemainingCalories(total);
+
+    updateProgressBar(total);
+}
+
+
+// Load saved information when page opens
 renderFoods();
 displayCalorieGoal();

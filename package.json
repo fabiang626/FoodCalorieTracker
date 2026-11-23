@@ -1,0 +1,24 @@
+{
+  "name": "foodcalorietracker",
+  "version": "1.0.0",
+  "description": "Author: Fabian Galindo",
+  "main": "script.js",
+  "scripts": {
+  "test": "jest"
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabiang626/FoodCalorieTracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/fabiang626/FoodCalorieTracker/issues"
+  },
+  "homepage": "https://github.com/fabiang626/FoodCalorieTracker#readme",
+  "devDependencies": {
+    "jest": "^30.5.2"
+  }
+}

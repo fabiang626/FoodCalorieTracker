@@ -47,3 +47,13 @@ Following software is required:
 - Users cannot track protein, carbohydrates, or fat.
 - Search and filtering features are not implemented.
 - Data is only stored in the browser's local storage.
+
+## Running Automated Tests
+
+1. Open the project folder in Visual Studio Code.
+2. Open a terminal.
+3. Run:
+
+npm test
+
+4. All tests should pass.
